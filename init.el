@@ -198,7 +198,7 @@
 
 (use-package go-mode
   :init
-  (defun c42:go-mode-hook ()
+  (defun custom-go-mode-hook ()
     (add-hook 'before-save-hook 'gofmt-before-save)
     ;; Customize compile command to run go build
     (if (not (string-match "go" compile-command))
@@ -209,7 +209,7 @@
     (local-set-key (kbd "C-c ,") 'go-test-current-file))
 
   :config
-  (add-hook 'go-mode-hook 'go-mode-hook-post-ops)
+  (add-hook 'go-mode-hook 'custom-go-mode-hook)
   (when (memq window-system '(mac ns))
     (exec-path-from-shell-initialize)
     (exec-path-from-shell-copy-env "GOPATH")))
