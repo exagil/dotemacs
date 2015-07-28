@@ -6,11 +6,8 @@
 ;;; Code:
 
 (require 'cask "/usr/local/share/emacs/site-lisp/cask.el")
-(cask-initialize)
 
-(require 'pallet)
-(require 'f)
-(require 'use-package)
+(cask-initialize)
 
 ;; Menubar with no toolbar, scrollbar or startup message
 (if (fboundp 'menu-bar-mode) (menu-bar-mode 1))
@@ -47,13 +44,36 @@
 ;;; Packages:
 
 ;; Editor
+
+(eval-when-compile
+  (require 'use-package))
+(require 'diminish)
+(require 'bind-key)
+
+(use-package abbrev
+  :diminish abbrev-mode
+  :config
+  (if (file-exists-p abbrev-file-name)
+      (quietly-read-abbrev-file)))
+
+(use-package deft
+  :config
+  (setq deft-extensions '("txt" "tex" "org"))
+  (setq deft-directory "~/Dropbox/Notes")
+  (setq deft-recursive t)
+  :bind (("<f8>" . deft)))
+
 (use-package nyan-mode
-  :config (nyan-mode 1))
+  :init (setq nyan-wavy-trail t)
+  :config
+  (nyan-mode 1)
+  (nyan-start-animation))
 
 (use-package magit
   :bind ("C-c g" . magit-status))
 
 (use-package undo-tree
+  :demand t
   :config (global-undo-tree-mode t)
   :bind (("s-Z" . undo-tree-redo)))
 
@@ -68,7 +88,7 @@
 (use-package color-theme
   :config
   (set-face-attribute 'default nil :font  "DejaVu Sans Mono-14")
-  (set-frame-font   "DejaVu Sans Mono-14" nil t))
+  (set-frame-font "DejaVu Sans Mono-14" nil t))
 
 (use-package color-theme-solarized
   :config
@@ -209,6 +229,7 @@
     (local-set-key (kbd "C-c ,") 'go-test-current-file))
 
   :config
+  (require 'go-rename)
   (add-hook 'go-mode-hook 'custom-go-mode-hook)
   (when (memq window-system '(mac ns))
     (exec-path-from-shell-initialize)
@@ -260,6 +281,20 @@
   (clojure:load-before-running cider-test-run-tests)
   (clojure:load-before-running cider-test-rerun-tests)
   (clojure:load-before-running cider-test-run-test))
+
+(use-package ruby-mode
+  :mode "\\.rb\\'"
+  :interpreter "ruby"
+  :functions inf-ruby-keys
+  :config
+  (defun custom-ruby-mode-hook ()
+    (require 'inf-ruby)
+    (inf-ruby-keys))
+  (add-hook 'ruby-mode-hook 'custom-ruby-mode-hook))
+
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :interpreter ("python" . python-mode))
 
 ;;; Custom:
 
