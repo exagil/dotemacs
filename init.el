@@ -294,9 +294,20 @@
     (inf-ruby-keys))
   (add-hook 'ruby-mode-hook 'custom-ruby-mode-hook))
 
+
+(use-package rbenv
+  :init
+  (setq rbenv-show-active-ruby-in-modeline t)
+  (setq rbenv-installation-dir "/usr/local/bin/rbenv")
+  :config
+  (global-rbenv-mode t))
+
 (use-package python
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python" . python-mode))
+
+(use-package elpy
+  :config (elpy-enable))
 
 ;;; Custom:
 
