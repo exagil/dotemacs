@@ -3,7 +3,7 @@
 ;;; Commentary:
 ;;;
 ;;; Configures the default color theme.
-;;; Uses Ethan Schoonover's solalized color theme.
+;;; Uses Ethan Schoonover's solarized color theme.
 ;;;
 ;;; Find more information at:-
 ;;;
@@ -12,7 +12,9 @@
 
 ;;; Code:
 
-(battery:require-packages 'color-theme-solarized)
+(battery:require-packages 'color-theme
+			  'color-theme-solarized)
+
 (battery:after-initializing
  (color-theme-solarized-dark)
  (set-default-font "DejaVu Sans Mono 14"))

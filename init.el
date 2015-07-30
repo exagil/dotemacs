@@ -33,7 +33,7 @@
 (require 'init-package)
 (require 'init-backups)
 (require 'init-theme)
-(require 'init-sublime)
+(require 'init-extension)
 
 ;; Editor
 (require 'init-base)
