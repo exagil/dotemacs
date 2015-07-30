@@ -9,6 +9,7 @@
 (battery:require-packages 'anzu
 			  'browse-kill-ring
 			  'company-mode
+			  'deft
 			  'projectile
 			  'undo-tree
 			  'smex
@@ -92,7 +93,8 @@
  (global-set-key (kbd "s-p") 'projectile-switch-project)
  (global-set-key (kbd "M-S-<up>") 'move-line-up)
  (global-set-key (kbd "M-S-<down>") 'move-line-down)
- (global-set-key (kbd "C-c n") 'indent-region-or-buffer))
+ (global-set-key (kbd "C-c n") 'indent-region-or-buffer)
+ (global-set-key (kbd "<f8>") 'deft))
 
 ;; Show full file path in the title bar
 (setq
@@ -111,6 +113,10 @@
       (lambda () (message "*beep*")))
 
 (setq projectile-completion-system 'grizzl)
+
+(setq deft-directory "~/Dropbox/Notes")
+(setq deft-extensions '("txt" "tex" "org"))
+(setq deft-recursive t)
 
 (provide 'init-base)
 
