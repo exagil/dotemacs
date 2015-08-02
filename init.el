@@ -43,6 +43,7 @@
 (require 'init-clojure)
 (require 'init-go)
 (require 'init-ruby)
+(require 'init-sml)
 
 ;; Sync packages
 (el-get 'sync battery:el-get-packages)
