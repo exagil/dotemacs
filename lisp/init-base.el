@@ -9,6 +9,8 @@
 (battery:require-packages 'anzu
 			  'browse-kill-ring
 			  'company-mode
+			  'etags-select
+			  'eproject
 			  'deft
 			  'projectile
 			  'undo-tree
@@ -58,6 +60,22 @@
   (transpose-lines 1)
   (forward-line -1))
 
+(defun visit-project-tags ()
+  "Visits and load the current project tags."
+  (interactive)
+  (let ((tags-file (concat (eproject-root) "TAGS")))
+    (visit-tags-table tags-file)
+    (message (concat "Loaded " tags-file))))
+
+(defun build-ctags ()
+  "Build ctags for current project."
+  (interactive)
+  (message "Building project tags...")
+  (let ((root (eproject-root)))
+    (shell-command (concat "ctags -e -R -f " root "TAGS " root)))
+  (visit-project-tags)
+  (message "Tags built successfully."))
+
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 
@@ -94,7 +112,10 @@
  (global-set-key (kbd "M-S-<up>") 'move-line-up)
  (global-set-key (kbd "M-S-<down>") 'move-line-down)
  (global-set-key (kbd "C-c n") 'indent-region-or-buffer)
- (global-set-key (kbd "<f8>") 'deft))
+ (global-set-key (kbd "<f8>") 'deft)
+ (global-set-key (kbd "<f7>") 'build-ctags)
+ (global-set-key (kbd "M-?") 'etags-select-find-tag-at-point)
+ (global-set-key (kbd "M-.") 'etags-select-find-tag))
 
 ;; Show full file path in the title bar
 (setq

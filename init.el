@@ -12,8 +12,6 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 (setq inhibit-startup-message t)
-(server-start)
-(desktop-save-mode t)
 
 ;; Load path
 ;; Package definitions
