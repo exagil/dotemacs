@@ -41,6 +41,7 @@
 (require 'init-clojure)
 (require 'init-go)
 (require 'init-ruby)
+(require 'init-python)
 (require 'init-sml)
 (require 'init-slime)
 
