@@ -42,6 +42,7 @@
 (require 'init-go)
 (require 'init-ruby)
 (require 'init-sml)
+(require 'init-slime)
 
 ;; Sync packages
 (el-get 'sync battery:el-get-packages)

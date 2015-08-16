@@ -76,6 +76,14 @@
   (visit-project-tags)
   (message "Tags built successfully."))
 
+(defun ignore-error-wrapper (fn)
+  "Ignore errors wrapper for the given FN function with `ignore-errors' macro."
+  (lexical-let ((fn fn))
+    (lambda ()
+      (interactive)
+      (ignore-errors
+        (funcall fn)))))
+
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 
@@ -115,7 +123,11 @@
  (global-set-key (kbd "<f8>") 'deft)
  (global-set-key (kbd "<f7>") 'build-ctags)
  (global-set-key (kbd "M-?") 'etags-select-find-tag-at-point)
- (global-set-key (kbd "M-.") 'etags-select-find-tag))
+ (global-set-key (kbd "M-.") 'etags-select-find-tag)
+ (global-set-key (kbd "C-c <left>")  (ignore-error-wrapper 'windmove-left))
+ (global-set-key (kbd "C-c <right>") (ignore-error-wrapper 'windmove-right))
+ (global-set-key (kbd "C-c <up>")    (ignore-error-wrapper 'windmove-up))
+ (global-set-key (kbd "C-c <down>")  (ignore-error-wrapper 'windmove-down)))
 
 ;; Show full file path in the title bar
 (setq
