@@ -44,6 +44,7 @@
 (require 'init-python)
 (require 'init-sml)
 (require 'init-slime)
+(require 'init-racket)
 
 ;; Sync packages
 (el-get 'sync battery:el-get-packages)
