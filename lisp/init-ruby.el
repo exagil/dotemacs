@@ -15,6 +15,7 @@
 			  'rspec-mode
 			  'ruby-tools
 			  'yaml-mode
+			  'autotest
 			  'ruby-electric)
 
 (eval-after-load 'rspec-mode
