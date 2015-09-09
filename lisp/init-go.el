@@ -27,7 +27,8 @@
            "go build -v"))
   (local-set-key (kbd "M-.") 'godef-jump)
   (local-set-key (kbd "M-,") 'pop-tag-mark)
-  (local-set-key (kbd "C-c ,") 'go-test-current-file))
+  (local-set-key (kbd "C-c ,") 'go-test-current-file)
+  (local-set-key (kbd "C-c .") 'go-test-current-test))
 
 (battery:after-initializing
  (add-hook 'go-mode-hook 'battery:go-mode-hook))

@@ -12,9 +12,11 @@
 
 ;;; Code:
 
-(battery:require-packages 'magit)
+(battery:require-packages 'magit
+			  'diff-hl)
 
 (battery:after-initializing
+ (global-diff-hl-mode t)
  (global-set-key (kbd "C-c g") 'magit-status))
 
 (provide 'init-git)
