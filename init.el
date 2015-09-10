@@ -45,6 +45,7 @@
 (require 'init-sml)
 (require 'init-slime)
 (require 'init-racket)
+(require 'init-c++)
 
 ;; Sync packages
 (el-get 'sync battery:el-get-packages)
